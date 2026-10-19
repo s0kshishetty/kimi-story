@@ -1,0 +1,21 @@
+/* ---- Kimi's eyes ---- */
+.kimi{position:relative;display:block;line-height:0;-webkit-user-select:none;user-select:none}
+.kimi>img{display:block;width:100%;height:auto;pointer-events:none}
+.kimi-eye{position:absolute;overflow:hidden;pointer-events:none;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.kimi-iris{position:absolute;display:block;max-width:none;pointer-events:none;will-change:transform}
+/* ---- Begin button + sound controls ---- */
+.begin-btn{display:inline-flex;flex-direction:column;align-items:center;gap:.1rem;margin:1rem auto .2rem;padding:.8rem 1.9rem;border:0;border-radius:3rem;background:linear-gradient(135deg,#ff9ad5,#b58cff);color:#26104f;font:700 1.15rem var(--hd);box-shadow:0 8px 28px rgba(255,154,213,.45);transition:transform .15s,box-shadow .2s;animation:beginPulse 2.4s ease-in-out infinite}
+.begin-btn small{font:600 .72rem var(--hd);opacity:.75;letter-spacing:.04em}
+.begin-btn:hover{transform:scale(1.05);box-shadow:0 10px 34px rgba(255,154,213,.65)}
+@keyframes beginPulse{50%{box-shadow:0 8px 40px rgba(255,154,213,.8)}}
+.sound-wrap{position:fixed;top:14px;right:14px;z-index:3000;display:flex;align-items:flex-start;gap:8px}
+.sound-wrap .sound-toggle{position:static}
+.sound-toggle.hint{animation:beginPulse 2.4s ease-in-out infinite}
+.sound-more{width:34px;height:34px;margin-top:7px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(7,10,30,.65);backdrop-filter:blur(6px);color:#fff;font-size:1rem;line-height:1;display:grid;place-items:center;order:-1}
+.sound-more:hover{background:rgba(122,63,181,.85)}
+.sound-panel{position:absolute;top:58px;right:0;width:210px;padding:.9rem 1rem;border-radius:1.1rem;background:rgba(7,10,30,.88);backdrop-filter:blur(8px);color:#fff;font:600 .9rem var(--hd);display:grid;gap:.7rem;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.sound-panel label{display:grid;gap:.4rem}.sound-panel b{float:right;font-weight:700;opacity:.8}
+.sound-panel .row{display:flex;gap:.5rem;align-items:center}
+.sound-panel input[type=range]{width:100%;accent-color:#ff9ad5}
+@media (prefers-reduced-motion:reduce){.begin-btn,.sound-toggle.hint{animation:none}}
+.sheet-link{display:block;margin-top:.7rem;color:var(--mint);font:600 .95rem var(--hd);text-decoration:none}.sheet-link:hover{text-decoration:underline}

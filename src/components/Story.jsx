@@ -2,7 +2,9 @@ import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import Stars from './Stars'
 import Cat from './Cat'
+import KimiFace from './KimiFace'
 import { CHAPTERS } from '../chapters'
+import { setScene, sfx } from '../sound'
 const CITIZENS = ['#ffb3d9', '#a8f0e6', '#ffe08a', '#c7b8ff', '#ffc29e']
 const REVEAL = 'brightness(1) drop-shadow(0 0 18px rgba(255,200,230,0.7))'
 const SHADOW = 'brightness(0) drop-shadow(0 0 14px rgba(120,160,255,0.6))'
@@ -18,7 +20,7 @@ export default function Story() {
       gsap.set('.citizen', { scale: 0 }); gsap.set('.bub', { scale: 0 })
       gsap.set('.cat', { xPercent: -50, x: '-34vw', color: '#04060f' })
       gsap.set('.baby', { xPercent: -50, x: '-46vw' })
-      gsap.set('.baby img', { filter: SHADOW })
+      gsap.set('.baby .kimi', { filter: SHADOW })
       gsap.set('.cat svg', { filter: 'drop-shadow(0 0 0px rgba(255,240,170,0))' })
 
       const tl = gsap.timeline({
@@ -57,7 +59,7 @@ export default function Story() {
         .to(['.cat', '.baby'], { scale: 1, y: 0, duration: .9, ease: 'bounce.out' }, 6)
         .to('.queen', { opacity: 1, yPercent: 0, scale: 1, duration: 1.3, ease: 'power2.out' }, 6.4)
       // 5 · accident: baby is revealed in colour
-      tl.to('.baby img', { filter: REVEAL, duration: 1 }, 8.2).to('.cat', { color: '#cdb8ff', duration: 1 }, 8.2)
+      tl.to('.baby .kimi', { filter: REVEAL, duration: 1 }, 8.2).to('.cat', { color: '#cdb8ff', duration: 1 }, 8.2)
         .to('.q', { opacity: 1, y: -10, duration: .5 }, 8.8)
         .to('.baby', { rotation: -6, duration: .5, yoyo: true, repeat: 1 }, 8.8)
       // 6 · panic
@@ -73,6 +75,18 @@ export default function Story() {
       tl.to('.citizen', { y: '-2vh', duration: .2, yoyo: true, repeat: 5, stagger: .06 }, 14)
         .to('.queen', { scale: 1.06, duration: 1.5 }, 14)
         .to('.heart', { keyframes: { opacity: [0, 1, 0], y: ['0vh', '-14vh', '-30vh'], easeEach: 'none' }, duration: 1.5, stagger: .15 }, 14.3)
+
+      // ---- story-synced audio (nothing is random: scene = current position in the story) ----
+      const SCENES = [[0, 'curious'], [2, 'mystery'], [4, 'journey'], [6, 'arrival'], [12.4, 'joy'], [15, 'ending']]
+      const CUES = [[2.1, 'sparkle'], [4.0, 'portalOpen'], [4.9, 'whoosh'], [6.5, 'land'], [10.4, 'murmur'], [12.3, 'hum'], [14.1, 'welcome']]
+      let last = 0
+      tl.eventCallback('onUpdate', () => {
+        const t = tl.time()
+        let s = SCENES[0][1]; for (const [at, name] of SCENES) if (t >= at) s = name
+        setScene(s)
+        if (t > last && t - last < 1.2) CUES.forEach(([at, fx]) => { if (last < at && t >= at) sfx[fx]() }) // forward, normal scrolling only
+        last = t
+      })
     }, root)
     return () => ctx.revert()
   }, [])
@@ -87,7 +101,7 @@ export default function Story() {
       <div className="queen"><div className="crown">♛</div><Cat /></div>
       {CITIZENS.map((c, i) => (<div key={i} className={'citizen c' + (i + 1)} style={{ color: c }}><span className="bub">{i % 2 ? '!?' : '?!'}</span><Cat /></div>))}
       <div className="actor cat"><div className="beams"><b /><b /><b /></div><Cat /></div>
-      <div className="actor baby"><div className="bob"><img src="/character.png" alt="" /><span className="q">?</span></div></div>
+      <div className="actor baby"><div className="bob"><KimiFace /><span className="q">?</span></div></div>
       {['♪', '♫', '♪', '♫', '♪', '♫'].map((n, i) => <span key={i} className="note">{n}</span>)}
       {[0, 1, 2, 3, 4, 5].map(i => <span key={i} className="heart">♥</span>)}
       <div className="flash" />

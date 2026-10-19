@@ -7,6 +7,7 @@ import SoundToggle from './components/SoundToggle'
 import Journal from './journal/Journal'
 import { useRoute } from './journal/shared'
 import './styles/extras.css'
+import './styles/audio.css'
 export default function App() {
   const journal = useRoute() === '/journal'
   useEffect(() => { // while the journal is open, freeze + hide the portfolio underneath (scroll position is kept)

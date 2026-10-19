@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import Stars from './Stars'
+import KimiFace from './KimiFace'
+import BeginButton from './BeginButton'
 export default function Hero() {
   const el = useRef()
   useLayoutEffect(() => {
@@ -19,7 +21,8 @@ export default function Hero() {
     <section ref={el} className="hero">
       <Stars count={80} />
       <h1 className="hero-title">Kimi</h1>
-      <div className="hero-baby"><img src="/character.png" alt="Kimi, a baby alien with pointed ears and big brown eyes" /></div>
-      <div className="hero-foot"><p>An alien baby. A cat kingdom. One accidental adventure.</p><span className="cue">Scroll to begin her story ↓</span></div>
+      <div className="hero-baby"><KimiFace alt="Kimi, a baby alien with pointed ears and big brown eyes" /></div>
+      <div className="hero-foot"><p>An alien baby. A cat kingdom. One accidental adventure.</p><BeginButton />
+        <a className="sheet-link" href="#about" onClick={e => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }) }}>Meet Kimi’s character sheet ↓</a><span className="cue">Scroll to begin her story ↓</span></div>
     </section>)
 }

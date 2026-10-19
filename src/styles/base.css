@@ -10,9 +10,10 @@ body{font-family:var(--bd);color:#fff;overflow-x:hidden}
 .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 60%,#4a2a8a,#1a1245 55%,#070a1e)}
 .hero-title{position:absolute;z-index:2;top:9vh;font:700 clamp(5rem,22vw,13rem)/.9 var(--hd);letter-spacing:.02em;background:linear-gradient(#fff,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-baby{position:relative;z-index:3;width:clamp(210px,38vw,400px);margin-top:12vh}
-.hero-baby img{width:100%;display:block;animation:float 5s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(255,154,213,.35))}
+.hero-baby img{width:100%;display:block}
+.hero-baby .kimi{display:block;animation:float 5s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(255,154,213,.35))}
 .hero-foot{position:absolute;z-index:4;bottom:5vh;padding:0 1.25rem}
 .hero-foot p{font-size:clamp(1rem,2.6vw,1.3rem);opacity:.9}
 .cue{display:block;margin-top:.8rem;font:600 .95rem var(--hd);color:var(--mint);animation:tw 2s ease-in-out infinite}
 :focus-visible{outline:3px solid var(--mint);outline-offset:3px}
-@media (prefers-reduced-motion:reduce){.stars i,.hero-baby img,.bob,.cat svg,.cue{animation:none}}
+@media (prefers-reduced-motion:reduce){.stars i,.hero-baby .kimi,.bob,.cat svg,.cue{animation:none}}

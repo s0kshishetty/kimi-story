@@ -24,6 +24,7 @@
 .bob{position:relative;animation:crawl 1.2s ease-in-out infinite}
 @keyframes crawl{50%{transform:translateY(-5px) rotate(-3deg)}}
 .baby img{width:100%;display:block}
+.baby .kimi{display:block}
 .q{position:absolute;top:-4%;right:8%;font:700 clamp(2rem,6vw,3.5rem) var(--hd);color:#fff;opacity:0}
 .beams{position:absolute;left:-80%;width:260%;top:-110vh;height:120vh;transform-origin:50% 0;pointer-events:none}
 .beams b{position:absolute;inset:0;background:linear-gradient(rgba(255,244,190,0),rgba(255,244,190,.7));clip-path:polygon(calc(50% - var(--t)) 0,calc(50% + var(--t)) 0,calc(50% + var(--w)) 100%,calc(50% - var(--w)) 100%)}
