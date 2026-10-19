@@ -1,5 +1,5 @@
 /* Kimi cat cursor (change the two numbers to move the click point) */
 html,html *{cursor:url('/cursor.png') 38 28,auto!important}
-.sound-toggle{position:fixed;top:14px;right:14px;z-index:1000;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(7,10,30,.65);backdrop-filter:blur(6px);color:#fff;font-size:1.35rem;line-height:1;display:grid;place-items:center;transition:transform .15s,background .2s,opacity .2s}
+.sound-toggle{position:fixed;top:14px;right:14px;z-index:3000;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(7,10,30,.65);backdrop-filter:blur(6px);color:#fff;font-size:1.35rem;line-height:1;display:grid;place-items:center;transition:transform .15s,background .2s,opacity .2s}
 .sound-toggle:hover{transform:scale(1.08);background:rgba(122,63,181,.85)}
 .sound-toggle.off{opacity:.75}

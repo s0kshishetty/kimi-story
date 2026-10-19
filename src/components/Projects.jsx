@@ -1,5 +1,6 @@
 import PortalPuzzle from './PortalPuzzle'
 import FlowerWalk from './FlowerWalk'
+import JournalProject from '../journal/JournalProject'
 import Stars from './Stars'
 export default function Projects() {
   return (
@@ -8,7 +9,7 @@ export default function Projects() {
       <div className="projects-head">
         <small>After the story</small>
         <h2>Kimi's Projects</h2>
-        <p>Two little adventures from Meoptune. Go on, play.</p>
+        <p>Three little adventures from Meoptune. Go on, play.</p>
       </div>
       <article className="project">
         <div className="project-info">
@@ -25,6 +26,14 @@ export default function Projects() {
           <p>It's night on Meoptune. Wherever Kimi walks, the flowers twirl and glow like starlight. Steer her with the arrow keys (or tap and drag) and collect fish for the Cat Queen.</p>
         </div>
         <FlowerWalk />
+      </article>
+      <article className="project">
+        <div className="project-info">
+          <span className="badge">Project 03</span>
+          <h3>Kimi's Cat Journal</h3>
+          <p>Her private little notebook. Open it to meet every cat Kimi has found on Meoptune, and read what she wrote about each one.</p>
+        </div>
+        <JournalProject />
       </article>
     </section>)
 }

@@ -79,6 +79,16 @@ export const sfx = {
   portalClose: play(() => tone({ f: 900, glide: 120, dur: 0.9, vol: 0.13, attack: 0.05, echo: true })),
   fish: play(() => { tone({ f: 880, dur: 0.25, type: 'triangle', vol: 0.14, echo: true }); tone({ f: 1318, t: 0.08, dur: 0.4, type: 'triangle', vol: 0.13, echo: true }) }),
   win: play(() => [523, 659, 784, 1047, 1319].forEach((f, i) => tone({ f, t: i * 0.12, dur: 0.6, vol: 0.12, echo: true }))),
+  page: play(() => { // soft paper-flip: a short burst of filtered noise + a tiny thud
+    const len = Math.floor(ctx.sampleRate * 0.42), buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0)
+    for (let i = 0; i < len; i++) { const t = i / len; d[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 1.7) * Math.min(1, t * 14) * (0.55 + 0.45 * Math.sin(t * 22)) }
+    const src = ctx.createBufferSource(); src.buffer = buf
+    const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 0.7
+    bp.frequency.setValueAtTime(3200, ctx.currentTime); bp.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.4)
+    const g = ctx.createGain(); g.gain.value = 0.6
+    src.connect(bp); bp.connect(g); g.connect(master); src.start()
+    tone({ f: 150, glide: 90, t: 0.5, dur: 0.12, vol: 0.06 })
+  }),
   chime: play(x => { // x = 0..1 position across the garden
     const now = performance.now(); if (now - lastChime < 110) return; lastChime = now
     tone({ f: NOTES[Math.min(NOTES.length - 1, Math.floor(x * NOTES.length))] * 2, dur: 0.9, vol: 0.05, echo: true })

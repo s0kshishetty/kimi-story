@@ -4,7 +4,7 @@ export default function SoundToggle() {
   const muted = useSyncExternalStore(subscribe, isMuted)
   useEffect(() => {
     const un = () => unlock()
-    const click = e => { if (e.target.closest && e.target.closest('button, a')) sfx.click() }
+    const click = e => { const el = e.target.closest && e.target.closest('button, a'); if (el && !el.hasAttribute('data-silent')) sfx.click() }
     window.addEventListener('pointerdown', un, { passive: true })
     window.addEventListener('keydown', un)
     document.addEventListener('click', click)
